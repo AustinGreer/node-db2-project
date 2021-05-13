@@ -2,12 +2,12 @@ const router = require('express').Router()
 const Cars = require('./cars-model')
 
 // get - resolves to an array of cars
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const currentCars = await Cars.getAll()
         res.json(currentCars)
     } catch (err) {
-        console.log(err)
+        next(err)
     }
 })
 
